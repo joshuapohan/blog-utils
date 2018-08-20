@@ -21,6 +21,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+
 class BlogArchiver{
 
     protected static final String USER_AGENT = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/13.0.782.112 Safari/535.1";
@@ -51,7 +52,7 @@ class BlogArchiver{
 		}
 	}
 
-	protected static Boolean IsParsePostSuccessful(JSONObject post){
+	protected static boolean IsParsePostSuccessful(JSONObject post){
 		Long id = (Long) post.get("id");
 		String title = (String) post.get("title");
 		String author = (String) post.get("author");
@@ -68,8 +69,12 @@ class BlogArchiver{
 		newPost.SetTimeStamp(timestamp);
 		newPost.SetBody(body);
 		newPost.SaveAsHTML();
+		newPost.SaveToDatabase();
 
 		return true;
 
 	}
+
 }
+
+
